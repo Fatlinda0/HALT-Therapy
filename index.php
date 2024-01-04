@@ -61,39 +61,12 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2933.9531317534897!2d21.158789115362968!3d42.6623485791678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee115f3438d%3A0x12a6afbdd10a9542!2sRexhep%20Luci%2C%20Prishtin%C3%AB!5e0!3m2!1ssq!2s!4v1639527727700!5m2!1ssq!2s" width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
-
-
-
-
-    <div class="our_services"> 
-    
-        <div class="therapy">
-            <img src="img/therapy.png" alt=""> <br>
-            <h3>Therapy</h3>
-        </div>
-
-        <div class="psychiatry">
-            <img src="img/Psychiatry.png" alt=""> <br>
-            <h3>Psychiatry</h3>
-        </div>
-
-   
-
-        <div class="acupuncture">
-            <img src="img/Acupuncture.png" alt=""><br>
-            <h3>Acupuncture</h3>
-        </div>
-    
-    </div>
  
     <div class="start_now">
         <h1>Get started with H A L T, today.</h1>
         <a href="contact.html"> <button type="button">Register/Login here!</button></a>
     </div>
-
-
-
     <?php include 'footer.php';  ?>
     <script src="js/main.js"></script>
-    </body>
-    </html>
+</body>
+</html>
