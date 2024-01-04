@@ -5,6 +5,7 @@
     font-family: 'Poppins', sans-serif;
 }
 nav{
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -22,21 +23,21 @@ nav{
     padding: 14px;
 }
 .hide{
-    display: none;
+    display: none; 
 }
 .titte:hover + .hide {
     display: block;
     color:rgb(48, 85, 48) ;
     background-color: rgb(179, 201, 179);
 }
+
 .nav-links{
     display: flex;
     justify-content: space-around;
     width: 30%;
 }
 .nav-links li{
-    list-style-type: none;
-    
+    list-style-type: none;    
 }
 .nav-links a{
     color: rgb(60, 104, 60);
@@ -44,8 +45,8 @@ nav{
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 14px;
-   padding: 19px;
-   transition: background-color 2s;
+    padding: 15px;
+    transition: background-color 2s;
 }
 
 .nav-links a:hover{
@@ -69,8 +70,8 @@ nav{
         width: 60%;
     }
 }
-@media screen and (max-width:768px){
-    body{
+@media screen and (max-width:900px){
+    body{   
         overflow-x: hidden;
     }
     .nav-links{
@@ -85,6 +86,7 @@ nav{
         width: 50%;
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
+        ;
     }
     .nav-links a{
         color: white;
@@ -108,23 +110,26 @@ nav{
         transform: translateX(0px);
     }
 }
+
 .landing_page{
     background-image: url(../img/foto2.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-   height: 90vh;
+    height: 90vh;
 }
 .content{
-    height: 100%px;
+    height: 100%;
     width: 100%;
 }
 .text{
-    padding-left: 7%;
-    padding-top: 16%;  
+    padding-left: 10%;
+    padding-top: 26%;  
 }
 .text h1{
     color: white;
@@ -163,8 +168,8 @@ nav{
     text-align: center;
 }
 .text1{
-   width: 60%;
-   padding-top: 80px;
+     width: 60%;
+     padding-top: 80px;
     color: rgb(47, 77, 47);
     font-size: 22px;
     text-align: center;
@@ -172,10 +177,12 @@ nav{
 }
 .fourth{
     display: flex;
+    width: 100%;
 }
 .map{
     margin: 90px;
     height: 90px;
+    
 }
 .text3{
     padding: 70px;
@@ -185,11 +192,12 @@ nav{
     text-align: center;
     font-weight:bold;
 }
+
 footer{
     width: 100%;
-    height: 190px;
-    text-align: center;
-    padding: 70px;
+   height: 190px;
+   text-align: center;
+   padding: 70px;
 }
 footer h1{
     font-size: 62px;
@@ -213,36 +221,15 @@ footer a{
     padding: 40px;
     padding-top: 80px;
 }
-.our_blog{
-    padding: 100px;
-    width: 90%;
-    margin: auto;
-    display: grid;
-    grid-gap:4px;
-    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-    grid-auto-rows: 350px;
-    text-align: center;
-}
-.our_blog img{
-    width: 90%;
-    margin: auto;
-    height: 350px;
-    object-fit: cover;
-}
-.our_blog p{
-    width: 90%;
-    margin: auto;
-    padding-top: 15px;
-    color:rgb(34, 80, 34) ;
-}
- h1{
+h1{
     padding-top: 90px;
     color: rgb(62, 90, 62);
-    font-size: 70px;
+    font-size: 63px;
     text-align: center;
     font-weight:bold;
 }
 .start_now{
+   background-color: rgb(100, 128, 100);
    width: 100%;
    height: 460px;
    text-align: center;
@@ -252,7 +239,7 @@ footer a{
     margin: auto;
     padding: 40px;
     padding-top: 140px;
-    color:rgb(57, 95, 57) ;
+    color:white ;
 }
 .start_now button{
     font-size: 24px;
@@ -260,149 +247,220 @@ footer a{
     background-color: white;
     color: rgb(62, 90, 62);
     border: none;
-    transition: background-color 2s;
+    transition: background-color 1s;
 }
 .start_now button:hover{
-    background-color: rgb(130, 185, 28);
+    background-color: rgb(59, 78, 59);
     color: white;
 }
 
-.login_register{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 710px;
-    transition: 0,5s;
+.contactUs-container{
+    width:30%;
+    float:right;
+    padding:10px;
+}
+.contactUs-container h1{
+    margin-bottom: 5px;
+    margin-top :5px;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: left;
+}
+input[type=text], textarea {
+    width: 280px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
 }
 
-.container{
-    position: relative;
-    width: 800px;
-    height: 500px;
-    margin: 20px;
+@media screen and (max-width:900px){
+    .text h1{
+        font-size: 38px;
+    }
+    .text p{
+        font-size: 20px;
+    }
+    .text{
+        padding-left: 7%;
+        padding-top: 36%;  
+    }
+    .second h1{
+        font-size: 55px;
+    }
+    .second p{
+        font-size: 17px;
+        padding: 60px;
+    }
+    
+    .img {
+        padding: 0px 10px;
+    }
+    .img img{
+        width: 100%;
+        height: auto;
+    }
+    .text1 h1{
+        font-size: 35px;
+        padding: 30px;
+    }
+    .text1{
+        width: 40%;
+        padding-top: 80px;
+        font-size: 19px;
+        text-align: center;
+     }
+     .fourth{
+        display: block;
+    }
+    .text3{
+        
+        width: 100%;
+        padding-bottom: 0px;
+    }
+    .text3 h1{
+        font-size: 40px;
+        text-align: center;
+        padding-top: 0px;
+    }
+    .text3 p{
+        padding:  20px;
+        font-size:  19px;
+    }
+    .map{
+        padding: 0px 10px;
+    }
+    .map iframe{
+        width: 100%;
+        height: auto;
+    }
+    .our_services{
+        grid-template-areas: 
+        "k1 k2"
+        "k3";
+     }
+     .start_now h1{
+         font-size: 42px;
+     }
 }
-.green{
-    position: absolute;
-    top: 40px;
-    width: 100%;
-    height: 420px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(75, 128, 75);
-    box-shadow: 0 5px 45px rgb(11, 95, 11);
+
+
+/* Blog */
+.h1-blog{
+    padding-top: 40px;
+    color: rgb(59, 99, 59);
+    font-size: 70px;
+    text-align: center;
+    font-weight:bold;
 }
-.green .box{
-    position: relative;
+#hr1{
     width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    margin: auto;
+    border-top: 3px dashed rgb(62, 100, 62);
 }
-.green .box h2{
-    color: white;
-    font-size: 22px;
-    font-weight: 500;
-    margin-bottom: 10px;
+.br-blog{
+    border-spacing: 7px;
 }
-.green .box button{
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: white;
-    color: rgb(60, 92, 60);
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
+.p-blog {
+    margin-left: 50px;
+    width: 1070px;
+    height: 650px;
+    text-align: justify;
 }
-.formBx{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background-color: white;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 5px 45px rgb(58, 99, 58);
-    transition: 0.5s ease-in-out;
+.p-blog p{
+    color: black;
+    font-size: 20px;
+    line-height: 1.5;
 }
-.formBx.active{
-    Left: 50%;
+.ul-blog{
+    list-style: square;
+    margin-left: 65px;
+    text-align: justify;
+    font-size: 20px;
 }
-.formBx .form{
-    position: absolute;
-    Left:0;
-    width: 100%;
-    padding: 50px;
-    transition: 0.5s;
+/* Slider */
+#slider {
+    margin: 0 auto;
+    text-align: center;
 }
-.formBx.active .signinForm{
-    Left: -100%;
-    transition-delay: 0s;
+#slider input[type=radio] {
+    display: none;
 }
-
-.formBx .signinForm{
-    transition-delay: 0.25s;
-}
-.formBx .form form{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.formBx .form form h3{
-    font-size: 30px;
-    color: rgb(18, 36, 18);
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-.formBx .form form input{
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
-    outline: none;
-    font-size: 16px;
-    border: 1px solid rgb(7, 78, 7);
-}
-.formBx .form form input[type="submit"]{
-    background-color: rgb(100, 139, 100);
-    border: none;
-    color: white;
-    max-width: 100px;
-    cursor: pointer;
-}
-
-.formBx .form form .forgot{
-    color: rgb(54, 105, 54);
+#slider label {
+    cursor:pointer;
     text-decoration: none;
 }
-.formBx .signupForm{
-    left:100%;
-    transition-delay: 0s;
+#slides {
+    z-index: 1;
 }
-
-.formBx.active .signupForm{
-    left:0;
-    transition-delay: 0.25s;
+#overflow {
+    width: 100%;
+    overflow: hidden;
 }
-.formBx.active .signupForm input[type="submit"]{
-    background-color:rgb(37, 88, 37) ;
+#slide1:checked ~ #slides .inner {
+    margin-left: 0;
 }
-
-.contact{
-    width: 40%;
+#slide2:checked ~ #slides .inner {
+    margin-left: -100%;
 }
-
-.contact h4{
-    color:rgb(31, 78, 31);
-    font-size: 22px;
+#slide3:checked ~ #slides .inner {
+    margin-left: -200%;
 }
-
-.contact h1{
-    color:rgb(31, 78, 31);
-    text-align: left;
+#slide4:checked ~ #slides .inner {
+    margin-left: -300%;
+}
+#slides .inner {
+    transition: margin-left 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+    width: 400%;
+    line-height: 0;
+    height: 408px;
+}
+#slides .slide {
+    width: 25%;
+    float:left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #fff;
+} 
+#controls {
+    margin: -180px 0 0 0;
+    width: 100%;
+    height: 50px;
+    z-index: 3;
+    position: relative;
+}
+#controls label {
+    transition: opacity 0.2s ease-out;
+    display: none;
+    width: 50px;
+    height: 50px;
+    opacity: .4;
+}
+#controls label:hover {
+    opacity: 1;
+}
+#bullets {
+    margin: 150px 0 0;
+    text-align: center;
+}
+#bullets label {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius:100%;
+    background: rgb(99, 161, 99);
+    margin: 0 10px;
+}
+#slide1:checked ~ #bullets label:nth-child(1),
+#slide2:checked ~ #bullets label:nth-child(2),
+#slide3:checked ~ #bullets label:nth-child(3),
+#slide4:checked ~ #bullets label:nth-child(4) {
+    background: #444;
+}
+#slides {
+    max-width: calc(100% - 140px);
+    margin: 0 auto;
 }
