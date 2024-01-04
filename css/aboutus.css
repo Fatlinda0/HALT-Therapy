@@ -43,7 +43,7 @@ body {
 
 .our_services{
     width: 100%;
-    height: 540px;
+    height: 440px;
     background-color:rgb(82, 116, 82);
     display: flex;
     flex: 1 1 200px;
