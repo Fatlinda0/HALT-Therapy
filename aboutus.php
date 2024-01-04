@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <link rel="stylesheet" href="css/aboutus.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/5a7ceed978.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -46,8 +39,18 @@
             <h3>Acupuncture</h3>
         </div>
     </div>
+    <h2 class="staff-h2">Our Staff</h2>
     <div class="staff">
-
+        <div class="staff-member">
+            <img src="img/fatlinda.jpg" alt="">
+            <h4>Fatlinda Berisha</h4>
+            <p>Programmer</p>
+        </div>
+        <div class="staff-member">
+            <img src="img/vlora.jpg" alt="">
+            <h4>Vlora Dili</h4>
+            <p>Programmer</p>
+        </div>
     </div>
     <?php include 'footer.php';  ?>
 </body>
