@@ -185,26 +185,6 @@ nav{
     text-align: center;
     font-weight:bold;
 }
-.our_services{
-    width: 100%;
-    height: 540px;
-    background-color:rgb(82, 116, 82);
-    display: flex;
-    flex: 1 1 200px;
-    text-align: center;
-    justify-content: center;
-}
-.our_services h3{
-    color: white;
-    padding: 60px;
-    font-size: 22px;
-    transition: background-color 2s;
-}
-.our_services h3:hover{
-    background-color:white;
-    color:rgb(47, 77, 47);
-}
-
 footer{
     width: 100%;
     height: 190px;
@@ -263,7 +243,6 @@ footer a{
     font-weight:bold;
 }
 .start_now{
-   background-color: rgb(100, 128, 100);
    width: 100%;
    height: 460px;
    text-align: center;
@@ -273,7 +252,7 @@ footer a{
     margin: auto;
     padding: 40px;
     padding-top: 140px;
-    color:white ;
+    color:rgb(57, 95, 57) ;
 }
 .start_now button{
     font-size: 24px;
@@ -426,154 +405,4 @@ footer a{
 .contact h1{
     color:rgb(31, 78, 31);
     text-align: left;
-}
-/* page "Our Services" */
-
-.landingimage{
-    background-image: url(../img/this3.jpg);
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    width: 100%;
-    height: 90vh;
-    justify-content: center;
-    align-items: center;
-}
-.content2{
-    height: 100%;
-    width: 100%;
-}
-.text-services{
-    padding-top: 420px;
-}
-.text-services h1{
-    padding: 50px;
-    color: white;
-    font-size: 48px;
-    text-align: left;
-    font-family: 'Courgette', cursive;
-}
-.ourServices{
-    background-color:white;
-}
-.ourServices h2{
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 28px;
-    color: rgb(59, 99, 59);
-    font-weight: 800;
-    font-style: initial;
-    line-height: 2;
-    font-size: 56px;
-    padding-bottom: 10px;
-}
-.ourServices hr{
-    width: 198px;
-    margin: auto;
-    height: 4px;
-    background-color: rgb(64, 102, 64);
-    border: none;
-}
-.services{
-    display: grid;
-    display: grid;
-    grid-gap:4px;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: 50% 50%;
-    grid-template-areas: 
-    "p1 p2"
-    "p3 p4";
-    text-align: center;
-    padding: 3px 90px;
-    position: relative;
-    box-sizing: border-box;
-}
-.services1{
-    display: inline-block;
-    padding: 3px 90px;
-    position: relative;
-    box-sizing: border-box;
-}
-.services-1{
-    margin-left: 10px;
-    margin-right: 5px;
-}
-.services-1:first-child{
-    margin-right: 20px;
-}
-.services-1 img{
-    width: 350px;
-    height: 220px;
-    object-fit: cover;
-    color: black;
-    background-color: rgb(115, 155, 115);
-    border-radius: 50%;
-}
-
-.services-1 h3{
-    font-size: 36px;
-    line-height: 1.8;
-    text-align: center; 
-    letter-spacing: 0em;
-    line-height: 1.8;
-    -webkit-font-smoothing: antialiased;
-}
-.services-1 h3,
-.services-1 p{
-    text-align: center;
-    color: rgb(57, 95, 57);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-.services-1 p{
-    font-size:19px;
-    line-height: 20px;
-}
-.services-1 h4{
-    text-align: center;
-    color: white;
-    line-height: 1.8;
-    font-style: italic;;
-}
-
-.quote{
-    background-color:rgb(81, 114, 81);
-    height: 450px;
-}
-.blockquote h1{
-    text-align: center;
-    font-size: 72px;
-    font-family: 'Corinthia', cursive;
-    color: white;
-    padding: 50px;
-}
-.blockquote p{
-    font-size: 30px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    line-height: 1.4;
-    text-align: center;
-    color: white;
-}
-.blockquote p:hover{
-    color: darkred;
-}
-.blockquote p {
-  text-align: center;
-}
-.blockquote a{
-    text-align: center;
-    text-decoration: none;
-}
-/* unvisited link */
-.blockquote a:link{
-    color: mediumvioletred;
-}
-
-/* visited link */
-.blockquote a:visited{
-    color: rgb(100, 0, 139);
-}
-
-/* mouse over link */
-.blockquote a:hover{
-    color: rgb(220, 223, 58);
 }
