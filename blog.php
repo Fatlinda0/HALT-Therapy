@@ -54,15 +54,15 @@ require_once 'ContentController.php';
    <h1>Our blog</h1>
    <hr id="hr_">
    <div class="our_blog">
-    <?php
-        $products =new ContentController;
-        $all =$products->readData();
-        for ($i=0;$i<count($all); $i++){
+      <?php
+         $products =new ContentController;
+         $all =$products->readData();
+         for ($i=0;$i<count($all); $i++){
             echo '<div class="blog_1">
             <img src="'.$all[$i]['blog_image'] .'">
             <p>' .$all[$i]['blog_title'].'</p>
             </div>';
-        }
+         }
       ?>
    </div>
    <?php include 'footer.php';  ?>

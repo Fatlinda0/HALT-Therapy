@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: white;
+}
+
+.about {
+    margin-top: 35px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+.about hr {
+    width: 30%;
+    height: 4px;
+    margin: auto;
+    background-color: rgb(62, 100, 62);
+}
+.about h2 {
+    font-size: 32px;
+    color: rgb(62, 100, 62);
+    text-align: center;
+}
+.about h4 {
+    font-size: 22px;
+    margin-top: 12px;
+    color: rgb(62, 100, 62);
+    margin-bottom: 10px;
+}
+.about p {
+    font-size: 17px;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+
+.our_services{
+    width: 100%;
+    height: 440px;
+    background-color:rgb(82, 116, 82);
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+.our_services h3{
+    color: white;
+    padding: 60px;
+    font-size: 22px;
+    transition: background-color 2s;
+}
+.our_services h3:hover{
+    background-color:white;
+    color:rgb(47, 77, 47);
+}
+
+.staff-h2{
+    font-size: 32px;
+    color: rgb(62, 100, 62);
+    margin-top: 16px;
+    text-align: center;
+}
+.staff {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    text-align: center;
+}
+
+.staff-member {
+    padding: 20px 20px 10px 20px;
+    margin: 20px;
+    border: 2px dashed #346d34;
+    width: 250px;
+}
+
+.staff-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 25%; 
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+.staff-member h4{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.staff-member p{
+    margin: 0;
+}
+
+@media (max-width:  1024px){
+    .our_services{
+        height: auto;
+    }
+}
+
+@media (max-width: 900px){
+    .our_services{
+        padding: 20px;
+    }
+    .our_services h3{
+        padding: 20px;
+    }
+}

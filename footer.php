@@ -4,6 +4,6 @@
     <i class="fa-brands fa-twitter"></i>
     <i class="fa-brands fa-linkedin"></i>
     <br><br>
-    <hr id="hr_">
-    <p>&#169; Fatlinda Berisha and Vlora Dili. All Right Reserved.</p>
+    <hr id="hr_" style="width: 45%;">
+    <p style="font-size: 18px; padding: 10px;">&#169; Fatlinda Berisha and Vlora Dili. All Right Reserved.</p>
 </footer>

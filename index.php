@@ -55,7 +55,9 @@
  
     <div class="start_now">
         <h1>Get started with H A L T, today.</h1>
-        <a href="login_form.php"> <button type="button">Register/Login here!</button></a>
+        <a href="login_form.php">
+            <button type="button">Register/Login here!</button>
+        </a>
     </div>
     
     <?php include 'footer.php';  ?>

@@ -42,7 +42,7 @@
     <h2 class="staff-h2">Our Staff</h2>
     <div class="staff">
         <div class="staff-member">
-            <img src="img/fatlinda.jpg" alt="">
+            <img src="img/fatlinda.jpeg" alt="">
             <h4>Fatlinda Berisha</h4>
             <p>Programmer</p>
         </div>
