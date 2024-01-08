@@ -26,7 +26,6 @@
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
             <li><a href="aboutus.php">AboutUs</a></li>
-            <li><a href="blog.php">Blog</a></li>
             <li><a href="contactus.php">ContactUs</a></li>
             <li><a href="login_form.php">Register/Login</a></li>
         </ul>       
