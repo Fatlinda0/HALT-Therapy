@@ -1,11 +1,22 @@
 <?php
 
-@include 'config.php';
+class Logout {
+    protected $configFile = 'config.php';
 
-session_start();
-session_unset();
-session_destroy();
+    public function __construct() {
+        include $this->configFile;
+    }
 
-header('location:login_form.php');
+    public function logout() {
+        session_start();
+        session_unset();
+        session_destroy();
 
-?> 
+        header('location:index.php');
+    }
+}
+
+$logout = new Logout();
+$logout->logout();
+
+?>

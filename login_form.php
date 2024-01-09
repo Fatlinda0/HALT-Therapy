@@ -2,43 +2,47 @@
 
 @include 'config.php';
 
+class Login {
+    private $conn;
+    private $email;
+    private $password;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function setData($postData) {
+        $this->email = mysqli_real_escape_string($this->conn, $postData['email']);
+        $this->password = md5($postData['password']);
+    }
+
+    public function login() {
+        $select = "SELECT * FROM user_form WHERE email = '$this->email' AND password = '$this->password'";
+        $result = mysqli_query($this->conn, $select);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
+            if ($row['user_type'] == 'admin') {
+                $_SESSION['admin_name'] = $row['name'];
+                header('location:admin_page.php');
+            } elseif ($row['user_type'] == 'user') {
+                $_SESSION['user_name'] = $row['name'];
+                header('location:index.php');
+            }
+        } else {
+            echo '<script>alert("Incorrect email or password! Try again.")</script>';
+        }
+    }
+}
+
 session_start();
 
-if(isset($_POST['submit'])){
-
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
-   $user_type = $_POST['user_type'];
-
-   $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
-
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $row = mysqli_fetch_array($result);
-
-      if($row['user_type'] == 'admin'){
-
-         $_SESSION['admin_name'] = $row['name'];
-         header('location:admin_page.php');
-
-      }elseif($row['user_type'] == 'user'){
-
-         $_SESSION['user_name'] = $row['name'];
-         header('location:user_page.php');
-
-      }
-     
-   }else{
-      $error[] = 'incorrect email or password!';
-   }
-
-};
+if (isset($_POST['submit'])) {
+    $login = new Login($conn);
+    $login->setData($_POST);
+    $login->login();
+}
 ?>
-<?php include 'nav.php';  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,25 +56,22 @@ if(isset($_POST['submit'])){
 
 </head>
 <body>
-   
-<div class="form-container" onsubmit="return Login()">
-
-   <form action="" method="post"  >
-      <h3>login now</h3>
-      <?php
-      if(isset($error)){
-         foreach($error as $error){
-            echo '<span class="error-msg">'.$error.'</span>';
-         };
-      };
-      ?>
-      <input type="email" id="email" name="email" required placeholder="enter your email">
-      <input type="password" id="password" name="password" required placeholder="enter your password">
-      <input type="submit" name="submit" value="login now" class="form-btn" >
-      <p>don't have an account? <a href="register_form.php">register now</a></p>
-   </form>
-
-</div>
-
+   <?php include 'nav1.php';  ?>   
+   <div class="form-container" onsubmit="return Login()">
+      <form action="" method="post"  >
+         <h3>login now</h3>
+         <?php
+            if(isset($error)){
+               foreach($error as $error){
+                  echo '<span class="error-msg">'.$error.'</span>';
+               };
+            };
+         ?>
+         <input type="email" id="email" name="email" required placeholder="enter your email">
+         <input type="password" id="password" name="password" required placeholder="enter your password">
+         <input type="submit" name="submit" value="login now" class="form-btn" >
+         <p>don't have an account? <a href="register_form.php">register now</a></p>
+      </form>
+   </div>
 </body>
 </html>

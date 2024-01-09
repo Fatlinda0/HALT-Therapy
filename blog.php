@@ -13,6 +13,16 @@ require_once 'ContentController.php';
     <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+   <?php
+      @include 'config.php';
+
+      session_start();
+
+      if(!isset($_SESSION['user_name'])){
+         header('location:login_form.php');
+      }
+   ?>
+   
    <?php include 'nav.php';  ?>
    <div id="slider">
       <input type="radio" name="slider" id="slide1" checked>

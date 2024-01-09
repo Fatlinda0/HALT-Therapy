@@ -248,6 +248,7 @@ input[type=text], textarea {
     resize: vertical;
 }
 
+
 @media screen and (max-width:900px){
     .text h1{
         font-size: 38px;

@@ -1,37 +1,53 @@
 <?php
 
-@include 'config.php';
+class UserManager {
+   private $conn;
+   private $error = [];
 
-if(isset($_POST['submit'])){
+   public function __construct() {
+      @include 'config.php';
+      $this->conn = $conn;
+   }
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
-   $user_type = $_POST['user_type'];
+   public function registerUser() {
+      if (isset($_POST['submit'])) {
+         $name = mysqli_real_escape_string($this->conn, $_POST['name']);
+         $email = mysqli_real_escape_string($this->conn, $_POST['email']);
+         $pass = md5($_POST['password']);
+         $cpass = md5($_POST['cpassword']);
+         $user_type = $_POST['user_type'];
 
-   $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
+         $select = "SELECT * FROM user_form WHERE email = '$email'";
+         $result = mysqli_query($this->conn, $select);
 
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $error[] = 'user already exist!';
-
-   }else{
-
-      if($pass != $cpass){
-         $error[] = 'password not matched!';
-      }else{
-         $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
-         mysqli_query($conn, $insert);
-         header('location:login_form.php');
+         if (mysqli_num_rows($result) > 0) {
+             $this->error[] = 'User already exists!';
+         } else {
+               if ($pass != $cpass) {
+                  $this->error[] = 'Passwords do not match!';
+               } else {
+                  $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name', '$email', '$pass', '$user_type')";
+                  mysqli_query($this->conn, $insert);
+                  header('location:login_form.php');
+               }
+         }
       }
    }
 
-};
+   public function getErrors() {
+      return $this->error;
+   }
+}
 
+$userManager = new UserManager();
+$userManager->registerUser();
+$errors = $userManager->getErrors();
 
+if (!empty($errors)) {
+   foreach ($errors as $error) {
+      echo '<span class="error-msg">' . $error . '</span>';
+   }
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +63,7 @@ if(isset($_POST['submit'])){
 
 </head>
 <body>
-<?php include 'nav.php';  ?>
+<?php include 'nav1.php';  ?>
 <div class="form-container" onsubmit="return Register()" >
 
    <form action="" method="post" >

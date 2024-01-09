@@ -1,3 +1,29 @@
+<?php
+
+@include 'config.php';
+
+session_start();
+if(!isset($_SESSION['user_name'])){
+    header('location:login_form.php');
+    exit;
+}
+if(isset($_POST['submit'])){
+
+    $subject = mysqli_real_escape_string($conn, $_POST['subject']);
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $message = mysqli_real_escape_string($conn, $_POST['message']);
+
+    $select = " SELECT * FROM contactus ";
+
+    $result = mysqli_query($conn, $select);
+
+    $insert = "INSERT INTO contactus(name, subject, email, message) VALUES('$name','$subject','$email','$message')";
+        mysqli_query($conn, $insert);
+        header('location:contactus.php');
+   };
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,45 +180,40 @@
     </style>
 </head>
 <body>
-    
-<?php include 'nav.php';  ?>
+    <?php include 'nav.php';  ?>
     <div class="container">
         <div class="form">
             <div class="contact-info">
                 <h3 class="title">Let's get in touch</h3>
                 <p class="text-contactus">Connect with HALT Therapy for a journey towards improved mental health. Let's start this transformative conversation together!</p>
                 <div class="info">
-                    <div class="information">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p>Rexhep Luci 36/9, Prishtina, Kosovo</p>
-                    </div>
-                    <div class="information">
-                        <i class="fa-solid fa-phone"></i>
-                        <p>+383(0)44 425 - 897</p>
-                    </div>
-                    <div class="information">
-                        <i class="fa-solid fa-envelope"></i>
-                        <p>halt@gmail.com</p>
-                    </div>
+                    <?php
+                        require_once 'config.php';
+
+                        $query = "SELECT * FROM contact_info";
+                        $result = mysqli_query($conn, $query);
+
+                        if($row = mysqli_fetch_assoc($result)) {
+                            echo '<div class="information"><i class="fa-solid fa-location-dot"></i><p>' . $row['address'] . '</p></div>';
+                            echo '<div class="information"><i class="fa-solid fa-phone"></i><p>' . $row['phone'] . '</p></div>';
+                            echo '<div class="information"><i class="fa-solid fa-envelope"></i><p>' . $row['email'] . '</p></div>';
+                        }
+                    ?>
                 </div>
                 <div class="social-media">
                     <p>Connect with us :</p>
                     <div class="social-icons">
-                        <a href="#">
-                            <i class="fa-brands fa-facebook"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
+                        <?php
+                            if($row) {
+                                echo '<a href="' . $row['facebook_url'] . '"><i class="fa-brands fa-facebook"></i></a>';
+                                echo '<a href="' . $row['instagram_url'] . '"><i class="fa-brands fa-instagram"></i></a>';
+                                echo '<a href="' . $row['twitter_url'] . '"><i class="fa-brands fa-twitter"></i></a>';
+                                echo '<a href="' . $row['linkedin_url'] . '"><i class="fa-brands fa-linkedin"></i></a>';
+                            }
+                        ?>
                     </div>
                 </div>
-            </div>  
+            </div>
             <div class="contact-form">
                 <span class="circle one"></span>
                 <span class="circle two"></span>
@@ -201,12 +222,13 @@
                     <h3 class="title">Contact us</h3>
                     <input type="text" name = "subject" placeholder="Subject" required>
                     <input type="text" name = "name" placeholder="Full name" required>
-                    <input type="text" name = "mail" placeholder="Your e-mail" required>
+                    <input type="email" name = "mail" placeholder="Your e-mail" required style="width: 280px; padding: 12px; border: 1px solid #ccc; margin-top: 6px; margin-bottom: 16px; resize: vertical;">
                     <textarea name="message"placeholder="Message" required></textarea>
                     <button id="buttonSubmit" type="submit" name="submit">SEND MAIL</button>
                 </form>
             </div>
         </div>
     </div>
+    <!-- <script src="js/scriptContactForm.js"></script> -->
 </body>
 </html>

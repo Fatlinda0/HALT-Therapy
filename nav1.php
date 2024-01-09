@@ -22,15 +22,7 @@
                 </h4>
             </div>
             <div class="hide">Hungry Angry Lonely Tired <i class="fas fa-smile"></i> </div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="blog.php">Blog</a></li>
-            <li><a href="support.php">Support</a></li>
-            <li><a href="aboutus.php">AboutUs</a></li>
-            <li><a href="contactus.php">ContactUs</a></li>
-            <li><a href="logout.php">LogOut</a></li>
-        </ul>       
+        </div>     
         <div class="burger">
             <div class="line1"></div>
             <div class="line2"></div>

@@ -120,3 +120,27 @@ function Validatee(){
     }
 }
 Validatee();
+
+// validimi i kontakt form
+
+function validateContactForm() {
+    var subject = document.getElementById('contactForm').elements['subject'].value;
+    var name = document.getElementById('contactForm').elements['name'].value;
+    var email = document.getElementById('contactForm').elements['mail'].value;
+    var message = document.getElementById('contactForm').elements['message'].value;
+    var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (subject === "") {
+        alert("Please enter the subject!");
+            return false;
+    } else if (name === "") {
+        alert("Please enter your name!");
+        return false;
+    } else if (email === "" || !emailRegex.test(email)) {
+        alert("Please enter a valid email!");
+        return false;
+    } else if (message === "") {
+        alert("Please enter a message!");
+        return false;
+    }
+}

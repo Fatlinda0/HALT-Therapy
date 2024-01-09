@@ -10,49 +10,91 @@
     <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <?php
+        @include 'config.php';
+
+        session_start();
+
+        if(!isset($_SESSION['user_name'])){
+            header('location:login_form.php');
+        }
+
+    ?>
+
     <?php include 'nav.php';  ?>
     <div class="landing_page">
-        <div class="content">
-            <div class="text">
-                <h1>Introducing H A L T, a <br> health collective.</h1> 
-                <p>Get accessible and personalized mental healthcare in-person or <br> from the comfort of your home. </p>
-            </div>
-        </div>
+        <?php
+            $query = "SELECT * FROM landing_content WHERE id = 1"; 
+            $result = mysqli_query($conn, $query);
+                
+            if(mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    echo '<div class="content">';
+                    echo '<div class="text">';
+                    echo '<h1>' . $row['title'] . '</h1>';
+                    echo '<p>' . $row['description'] . '</p>';
+                    echo '</div></div>';
+                }
+            } else {
+                echo "<div class='content'><div class='text'><h1>Introducing H A L T, a health collective.</h1><p>Get accessible and personalized mental healthcare in-person or from the comfort of your home.</p></div></div>";
+            }
+        ?>
     </div>
 
     <div class="second">
-        <h1>Our approach</h1>
-        <p>We are a group of doctoral-level psychologists and psychiatrists who provide quality mental health care. As a mental health collective, we assist members by providing therapy, medication management, coaching, and more. Let us help you connect with one of our doctors who meets your needs and is available to see you, online or in-person.</p>
+        <?php
+            $query = "SELECT * FROM section_content WHERE section_name = 'second'"; 
+            $result = mysqli_query($conn, $query);
+            
+            if(mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    echo '<h1>' . $row['title'] . '</h1>';
+                    echo '<p>' . $row['content'] . '</p>';
+                }
+            } else {
+                echo "<h1>Our approach</h1><p>Default content for second section</p>";
+            }
+        ?>    
     </div>
 
     <div class="third">
-        <div class="img">
-            <img src="img/foto3.jpg" alt="">
-
-        </div>
-        <div class="text1">
-            <h1>Providing you with a safe space to relax</h1>
-            <p>All your appointments will take place in our soothing office environment with fully private rooms, complimentary tea and water, and individualized care. </p>
-        </div>  
+        <?php
+            $query = "SELECT * FROM section_content WHERE section_name = 'third'"; 
+            $result = mysqli_query($conn, $query);
+            
+            if(mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    echo '<div class="img"><img src="' . $row['image_url'] . '" alt=""></div>';
+                    echo '<div class="text1">';
+                    echo '<h1>' . $row['title'] . '</h1>';
+                    echo '<p>' . $row['content'] . '</p>';
+                    echo '</div>';
+                }
+            } else {
+                echo "<div class='img'><img src='default-image.jpg' alt=''></div><div class='text1'><h1>Default Title</h1><p>Default content for third section</p></div>";
+            }
+        ?>
     </div>
 
     <div class="fourth">
-        <div class="text3">
-            <h1>In-person and remote options</h1>
-            <p>Our office is conveniently located in Prishtina<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
-                <lord-icon
-                    src="https://cdn.lordicon.com/zzcjjxew.json"
-                    trigger="loop"
-                    colors="primary:#0a5c15,secondary:#109121"
-                    style="width:50px;height:50px">
-                </lord-icon> . Can’t make it into the office? No worries – we’ve got you covered with teletherapy. 
-            </p>
-        </div>
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2933.9531317534897!2d21.158789115362968!3d42.6623485791678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee115f3438d%3A0x12a6afbdd10a9542!2sRexhep%20Luci%2C%20Prishtin%C3%AB!5e0!3m2!1ssq!2s!4v1639527727700!5m2!1ssq!2s" width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+        <?php
+            $query = "SELECT * FROM section_content WHERE section_name = 'fourth'"; 
+            $result = mysqli_query($conn, $query);
+            
+            if(mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    echo '<div class="text3">';
+                    echo '<h1>' . $row['title'] . '</h1>';
+                    echo '<p>' . $row['content'] . '</p>';
+                    echo '</div>';
+                    echo '<div class="map">' . $row['additional_content'] . '</div>';
+                }
+            } else {
+                echo "<div class='text3'><h1>Default Title</h1><p>Default content for fourth section</p></div><div class='map'>Default Map Content</div>";
+            }
+        ?>
     </div>
- 
+    
     <div class="start_now">
         <h1>Get started with H A L T, today.</h1>
         <a href="login_form.php">
