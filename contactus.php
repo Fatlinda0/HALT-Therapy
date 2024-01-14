@@ -8,19 +8,20 @@ if(!isset($_SESSION['user_name'])){
     exit;
 }
 if(isset($_POST['submit'])){
-
+    
     $subject = mysqli_real_escape_string($conn, $_POST['subject']);
     $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $email = mysqli_real_escape_string($conn, $_POST['mail']);
     $message = mysqli_real_escape_string($conn, $_POST['message']);
 
     $select = " SELECT * FROM contactus ";
 
     $result = mysqli_query($conn, $select);
 
-    $insert = "INSERT INTO contactus(name, subject, email, message) VALUES('$name','$subject','$email','$message')";
-        mysqli_query($conn, $insert);
-        header('location:contactus.php');
+    $stmt = $conn->prepare("INSERT INTO contactus (name, subject, email, message) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $subject, $email, $message);
+    $stmt->execute();
+    header('location:contactus.php');
    };
 ?>
 
@@ -217,18 +218,25 @@ if(isset($_POST['submit'])){
             <div class="contact-form">
                 <span class="circle one"></span>
                 <span class="circle two"></span>
-
+                
                 <form method="post" action="contactform.php" id="contactForm">
+                    <?php
+                        if(isset($error)){
+                            foreach($error as $error){
+                                echo '<span class="error-msg">'.$error.'</span>';
+                            };
+                        };
+                    ?>
                     <h3 class="title">Contact us</h3>
-                    <input type="text" name = "subject" placeholder="Subject" required>
-                    <input type="text" name = "name" placeholder="Full name" required>
-                    <input type="email" name = "mail" placeholder="Your e-mail" required style="width: 280px; padding: 12px; border: 1px solid #ccc; margin-top: 6px; margin-bottom: 16px; resize: vertical;">
-                    <textarea name="message"placeholder="Message" required></textarea>
+                    <input type="text" name = "subject" placeholder="Subject" id="subject" required>
+                    <input type="text" name = "name" placeholder="Full name" id="name" required>
+                    <input type="email" name = "mail" placeholder="Your e-mail" id="mail" required style="width: 280px; padding: 12px; border: 1px solid #ccc; margin-top: 6px; margin-bottom: 16px; resize: vertical;">
+                    <textarea name="message" placeholder="Message" id="message" required></textarea>
                     <button id="buttonSubmit" type="submit" name="submit">SEND MAIL</button>
                 </form>
             </div>
         </div>
     </div>
-    <!-- <script src="js/scriptContactForm.js"></script> -->
+    <script src="js/scriptContactForm.js"></script>
 </body>
 </html>

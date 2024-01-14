@@ -15,40 +15,16 @@ if(bar){
  } 
 
 const form = document.getElementById('contactForm');
+const subject = document.getElementById('subject');
 const username = document.getElementById('name');
 const email = document.getElementById('mail');
-const subject = document.getElementById('subject');
 const message = document.getElementById('message');
 
 form.addEventListener('submit', (event) =>{
-    event.preventDefault();
-
-    Validate();
-    SuccessMsg();
+    if (!Validate()) {
+        event.preventDefault();
+    }
 })
-
-const sendData = (sRate, Count) => {
-    if(sRate === Count){
-        swal("Thank You! ", "Thank you for contacting us.");
-    }
-}
-
-
-function SuccessMsg() {
-    let formContr = document.getElementsByClassName('form-control');
-    var Count = formContr.length - 1;
-    for(var i = 0; i < formContr.length; i++){
-        if(formContr[i].className === "form-control success"){
-            var sRate = 0 + i;
-           
-            sendData(sRate, Count);
-        }
-        else{
-            return false;
-        }
-    }
-}
-
 
 const isEmail = (emailVal) =>{
     var atSymbol = emailVal.indexOf('@');
@@ -61,9 +37,9 @@ const isEmail = (emailVal) =>{
 
 //Validimi
 function Validate(){
+    const subjectVal = subject.value.trim();
     const nameVal = username.value.trim();
     const emailVal = email.value.trim();
-    const subjectVal = subject.value.trim();
     const messageVal = message.value.trim();
 
     //name
@@ -72,10 +48,9 @@ function Validate(){
     }
     else if(nameVal.length <=2){
         setErrorMsg(username, 'Min 3 char');
+        isValid = false;
     }
-    else{
-        setSuccessMsg(username);
-    }
+    
 
     //message
 
@@ -84,9 +59,7 @@ function Validate(){
     }
     else if(messageVal.length <=7){
         setErrorMsg(message, 'Min 8 char');
-    }
-    else{
-        setSuccessMsg(message);
+        isValid = false;
     }
 
     //email
@@ -95,22 +68,21 @@ function Validate(){
     }
     else if(!isEmail(emailVal)){
         setErrorMsg(email, 'Email is not valid');
+        isValid = false;
     }
-    else{
-        setSuccessMsg(email);
-    }
+    
 
     //subject
     if(subjectVal === ""){
         setErrorMsg(subject, 'Subject cannot be blank');
     }
     else if(subjectVal.length <= 2){
-        setErrorMsg(subject, 'Min 3 char');
+        setErrorMsg(subject, 'Subject must be at least 3 characters');
+        isValid = false;
     }
-    else{
-        setSuccessMsg(subject);
-    }
-
+    const errors = document.querySelectorAll('.form-control.error');
+    return errors.length === 0;
+    return isValid;
 }
 
 function setErrorMsg(input, errormsgs){
@@ -118,9 +90,4 @@ function setErrorMsg(input, errormsgs){
     const small = formControl.querySelector('small');
     formControl.className = "form-control error";
     small.innerText = errormsgs;
-}
-
-function setSuccessMsg(input){
-    const formControl = input.parentElement;
-    formControl.className = "form-control success";
 }
