@@ -65,16 +65,21 @@ require_once 'ContentController.php';
    <hr id="hr_">
    <div class="our_blog">
       <?php
-         $products =new ContentController;
-         $all =$products->readData();
-         for ($i=0;$i<count($all); $i++){
-            echo '<div class="blog_1">
-            <img src="'.$all[$i]['blog_image'] .'">
-            <p>' .$all[$i]['blog_title'].'</p>
-            </div>';
+         $products = new ContentController;
+         $all = $products->readData();
+         foreach ($all as $blog) {
+            echo '<div class="blog_post">';
+            echo '<div class="blog_image"><img src="' . $blog['blog_image'] . '" alt="Blog Image"></div>';
+            echo '<div class="blog_content">';
+            echo '<h3 class="blog_title">' . $blog['blog_title'] . '</h3>';
+            echo '<div class="blog_body">' . $blog['blog_body'] . '</div>';
+            echo '<p class="blog_author">Posted by: ' . $blog['admin_name'] . '</p>';
+            echo '</div>';
+            echo '</div>';
          }
       ?>
    </div>
+
    <?php include 'footer.php';  ?>
    <script src="js/main.js"></script>
 </body>

@@ -1,4 +1,11 @@
-<?php 
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+if(!isset($_SESSION['admin_name'])){
+  header('location:login_form.php');
+  exit;
+}
 require_once 'EmailController.php';
 ?>
 <head>
@@ -55,10 +62,22 @@ require_once 'EmailController.php';
   top: 20px;
 }
 .top-links{
-    font-size: 30px;
-    color: black;
-    padding: 30px;
-    text-decoration: none;
+  font-size: 30px;
+  color: black;
+  padding: 30px;
+  text-decoration: none;
+}
+.action-link {
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+}
+.delete-link {
+  background-color: #D9001D;
+}
+.action-link:hover {
+  opacity: 0.8;
 }
 </style>
 <?php include 'Dashboard.php';  ?>
@@ -70,6 +89,7 @@ require_once 'EmailController.php';
               <th>Subject</th>
               <th>Email</th>
               <th>Message</th>
+              <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -82,12 +102,9 @@ require_once 'EmailController.php';
             <td><?php echo $email['subject'] ?></td>
             <td><?php echo $email['mail'] ?></td>
             <td><?php echo $email['message'] ?></td>
-            <td><a href="EmailDelete.php?id=<?php echo $email['id'];?>">Delete</a></td>
+            <td><a class="action-link delete-link" href="EmailDelete.php?id=<?php echo $email['id'];?>">Delete</a></td>
           </tr>
           <?php endforeach; ?>
         </tbody>
     </table>
-    <br><br>
-    <br>
-    <a class="home"href="index.php">Go to Homepage.php</a>
 </div>
