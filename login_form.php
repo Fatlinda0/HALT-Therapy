@@ -2,6 +2,16 @@
 
 @include 'config.php';
 
+session_start();
+
+if(isset($_SESSION['admin_name'])) {
+    header('Location: admin_page.php');
+    exit;
+} elseif (isset($_SESSION['user_name'])) {
+    header('Location: index.php');
+    exit;
+}
+
 class Login {
     private $conn;
     private $email;
@@ -33,8 +43,6 @@ class Login {
         }
     }
 }
-
-session_start();
 
 if (isset($_POST['submit'])) {
     $login = new Login($conn);
