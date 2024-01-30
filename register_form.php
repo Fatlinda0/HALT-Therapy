@@ -75,19 +75,19 @@ if (!empty($errors)) {
          };
       };
       ?>
-      <input type="text" name="name" required placeholder="enter your name" id="name">
-      <input type="email" name="email" required placeholder="enter your email"id="email">
-      <input type="password" name="password" required placeholder="enter your password"id="password">
-      <input type="password" name="cpassword" required placeholder="confirm your password" id="cpassword">
+      <input type="text" name="name" required placeholder="enter your name" id="name" required pattern =".{3,}$">
+      <input type="email" name="email" required placeholder="enter your email"id="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
+      <input type="password" name="password" required placeholder="enter your password"id="password" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|\W).{6,}$">
+      <input type="password" name="cpassword" required placeholder="confirm your password" id="cpassword" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|\W).{6,}$">
       <select name="user_type">
          <option value="user">user</option>
          <option value="admin">admin</option>
       </select>
-      <input type="submit" name="submit" value="register now" class="form-btn" >
+      <input type="submit" name="submit" value="register now" class="form-btn" onclick="validateRegistration()">
       <p>already have an account? <a href="login_form.php">login now</a></p>
    </form>
 
 </div> 
-
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -67,8 +67,8 @@ if (isset($_POST['submit'])) {
                };
             };
          ?>
-         <input type="email" id="email" name="email" required placeholder="enter your email">
-         <input type="password" id="password" name="password" required placeholder="enter your password">
+         <input type="email" id="email" name="email" required placeholder="enter your email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
+         <input type="password" id="password" name="password" required placeholder="enter your password" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|\W).{6,}$">
          <input type="submit" name="submit" value="login now" class="form-btn" >
          <p>don't have an account? <a href="register_form.php">register now</a></p>
       </form>

@@ -10,10 +10,9 @@ const navSlide = () => {
 
 
         //animate links
-        navLinks.forEach((link, index)=>{
-            
+        navLinks.forEach((link, index)=>{ 
             link.style.animation='navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s';
-    
+
         });
         
         //burger animation
@@ -22,125 +21,61 @@ const navSlide = () => {
 }
 
 navSlide();
- 
-const slide = () =>{
-    const signinBtn=document.querySelector('.signinBtn');
-    const signupBtn=document.querySelector('.signupBtn');
-    const formBx=document.querySelector('.formBx');
-    const login_register=document.querySelector('.login_register');
 
 
+function validateRegistration(){
+    var username = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('cpassword').value;
 
-    signupBtn.onclick=function(){
-        formBx.classList.add('active');
-        login_register.classList.add('active');   
+    let message = document.getElementById('message');
+
+    //validimi i username
+
+    var usernameRegex = /^.{3,}$/;
+    if (!usernameRegex.test(username)){
+        alert('Username duhet te jete se paku 3 karaktere');
+        return;
     }
-    signinBtn.onclick=function(){
-        formBx.classList.remove('active');
-        login_register.classList.remove('active');
+
+    //validimi i email
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRegex.test(email)){
+        alert('Adresa e email nuk eshte e vlefshme');
+        return;
     }
+
+    //validimi i passwordit dhe konfirmimit
+
+    var passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|\W).{8,}$/;
+
+    if(!passwordRegex.test(password)){
+        alert('Fjalëkalimi duhet të përmbajë së paku një shkronjë të madhe, një shkronjë të vogël, një numër ose një karakter special dhe të jetë së paku 8 karaktere.');
+        return;
+    }
+
+    if(password !== confirmPassword){
+        alert('Fjalekalimet nuk perputhen');
+        return;
+    }
+
 }
 
-slide();
+function validateLogin(){
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
 
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function Validation() {
-    var username = document.querySelector('#username').value;
-    var password = document.querySelector('#password').value;
-    var firstLetter = username[0];
-    var firstLetterIsUpperCase = (firstLetter === firstLetter.toUpperCase());
-    var usernameIncludesDigit = /\d/.test(username);
-    var passwordLength = (password.length < 8 || password.length > 20);
-    var passwordIncludesUppercase = /[A-Z]/.test(password); 
-
-    if(username==null || username==""){
-        alert("Please provide your full username!");
-    }
-    else if (!firstLetterIsUpperCase) {
-        alert(" The first letter of username must be uppercase.");
-    }
-    else if (!usernameIncludesDigit) {
-        alert("Username must include at least one digit.");
+    if(!emailRegex.test(email)){
+        alert('Email nuk eshte i vlefshem.');
+        return;
     }
 
-    else if(password==null || password==""){
-        alert("Please enter password!");
-    }
-    else if (passwordLength){
-        alert(" The password should be within 8 to 20 characters.");
-    }
-    else if (!passwordIncludesUppercase) {
-        alert("The password should contain at least one uppercase character.");
-    } 
-    else{
-        alert("Login Successfully"); 
-    }
-}
-Validation();
-
-
-function Validatee(){
-    var username = document.querySelector('#username').value;
-    var firstLetter = username[0];
-    var firstLetterIsUpperCase = (firstLetter === firstLetter.toUpperCase());
-    var usernameIncludesDigit = /\d/.test(username);
-    var regexEmail=document.querySelector('#email').value;
-    var regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var password1 = document.querySelector('#password1').value;
-    var password2=document.querySelector('#password2').value;
-    var passwordLength = (password.length < 8 || password.length > 20);
-    var passwordIncludesUppercase = /[A-Z]/.test(password); 
-
-    if(username==null || username==""){
-        alert("Please provide your full username!");
-    }
-    else if (!firstLetterIsUpperCase) {
-        alert(" The first letter of username must be uppercase.");
-     }
-     else if (!usernameIncludesDigit) {
-        alert("Username must include at least one digit.");
-    }
-    else if(!regexEmail.test(email)){
-        alert("Write another email!");
-    }
-    else if(password1==null || password1=="" ){
-        alert("Please enter password!");
-    }
-    else if (passwordLength){
-        alert(" The password should be within 8 to 20 characters.");
-    }
-    else if (!passwordIncludesUppercase) {
-        alert("The password should contain at least one uppercase character.");
-    } 
-    else if (password1 !== password2) {
-        alert("The passwords do not match.");
-    }
-    else{
-        alert("Login Successfully");
-    }
-}
-Validatee();
-
-// validimi i kontakt form
-
-function validateContactForm() {
-    var subject = document.getElementById('contactForm').elements['subject'].value;
-    var name = document.getElementById('contactForm').elements['name'].value;
-    var email = document.getElementById('contactForm').elements['mail'].value;
-    var message = document.getElementById('contactForm').elements['message'].value;
-    var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-    if (subject === "") {
-        alert("Please enter the subject!");
-            return false;
-    } else if (name === "") {
-        alert("Please enter your name!");
-        return false;
-    } else if (email === "" || !emailRegex.test(email)) {
-        alert("Please enter a valid email!");
-        return false;
-    } else if (message === "") {
-        alert("Please enter a message!");
-        return false;
-    }
+    var passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|\W).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        alert('Fjalëkalimi duhet të përmbajë së paku një shkronjë të madhe, një shkronjë të vogël, një numër ose një karakter special dhe të jetë së paku 8 karaktere.')
+        return;
+      }
 }
