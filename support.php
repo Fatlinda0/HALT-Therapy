@@ -10,87 +10,39 @@
 </head>
 <body>
     <?php
-        @include 'config.php';
-
+        include 'config.php';
         session_start();
 
-        if(!isset($_SESSION['user_name'])){
+        if (!isset($_SESSION['user_name'])) {
             header('location:login_form.php');
         }
     ?>
-    <?php include 'nav.php';  ?>
-    <section class="faq-section"> 
-        <h1 class="title">FREQUENTLY ASKED QUESTIONS</h1>
-            <ul class="faq">
-                <li>
-                    <div class="q">
-                        <span class="arrow"></span> 
-                        <span>How do I replay?</span>
-                    </div>
-                    <div class="a">
-                        <p>Lorem, ipsum dolor sit amet consectetur 
-                            adipisicing elit. Ullam esse, vel quos maiores cum 
-                            est architecto. Consequuntur atque quos nemo, est alias, 
-                            repellendus suscipit optio et molestias nostrum exercitationem eos!
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="q">
-                        <span class="arrow"></span> 
-                        <span>How do I replay?</span>
-                    </div>
-                    <div class="a">
-                        <p>Lorem, ipsum dolor sit amet consectetur 
-                            adipisicing elit. Ullam esse, vel quos maiores cum 
-                            est architecto. Consequuntur atque quos nemo, est alias, 
-                            repellendus suscipit optio et molestias nostrum exercitationem eos!
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="q">
-                        <span class="arrow"></span> 
-                        <span>How do I replay?</span>
-                    </div>
-                    <div class="a">
-                        <p>Lorem, ipsum dolor sit amet consectetur 
-                            adipisicing elit. Ullam esse, vel quos maiores cum 
-                            est architecto. Consequuntur atque quos nemo, est alias, 
-                            repellendus suscipit optio et molestias nostrum exercitationem eos!
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="q">
-                        <span class="arrow"></span> 
-                        <span>How do I replay?</span>
-                    </div>
-                    <div class="a">
-                        <p>Lorem, ipsum dolor sit amet consectetur 
-                            adipisicing elit. Ullam esse, vel quos maiores cum 
-                            est architecto. Consequuntur atque quos nemo, est alias, 
-                            repellendus suscipit optio et molestias nostrum exercitationem eos!
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="q">
-                        <span class="arrow"></span> 
-                        <span>How do I replay?</span>
-                    </div>
-                    <div class="a">
-                        <p>Lorem, ipsum dolor sit amet consectetur 
-                            adipisicing elit. Ullam esse, vel quos maiores cum 
-                            est architecto. Consequuntur atque quos nemo, est alias, 
-                            repellendus suscipit optio et molestias nostrum exercitationem eos!
-                        </p>
-                    </div>
-                </li>
-            </ul>
+
+    <?php include 'nav.php'; ?>
+
+    <section class="support-section">
+        <div class="support-content">
+            <?php
+                $query = "SELECT * FROM support_faq";
+                $result = mysqli_query($conn, $query);
+
+                if (mysqli_num_rows($result) > 0) {
+                    echo '<h1>FREQUENTLY ASKED QUESTIONS</h1><br><br>';
+                    echo '<ul class="faq">';
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<li>';
+                        echo '<div class="q"><span class="arrow"></span><span>' . $row['question'] . '</span></div>';
+                        echo '<div class="a"><p>' . $row['answer'] . '</p></div>';
+                        echo '</li>';
+                    }
+                    echo '</ul>';
+                } else {
+                    echo "There are no FAQs to display.";
+                }
+            ?>
+        </div>
     </section>
-    
-    <?php include 'footer.php';  ?>
+    <?php include 'footer.php'; ?>
     <script src="js/support.js"></script>
 </body>
 </html>
