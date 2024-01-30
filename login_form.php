@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
    <?php include 'nav1.php';  ?>   
-   <div class="form-container" onsubmit="return Login()">
+   <div class="form-container" onsubmit="return validateLogin()">
       <form action="" method="post"  >
          <h3>login now</h3>
          <?php

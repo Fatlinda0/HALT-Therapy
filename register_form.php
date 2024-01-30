@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class UserManager {
    private $conn;
@@ -23,34 +24,25 @@ class UserManager {
 
          if (mysqli_num_rows($result) > 0) {
             $this->error[] = 'User already exists!';
-         } else {
-               if ($pass != $cpass) {
-                  $this->error[] = 'Passwords do not match!';
-               } else {
-                  $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name', '$email', '$pass', '$user_type')";
-                  mysqli_query($this->conn, $insert);
-                  $this->successMessage = "Registration successful! Redirecting to login...";
-                  header('refresh:2;url = login_form.php');
-               }
          }
+             
+         $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name', '$email', '$pass', '$user_type')";
+         mysqli_query($this->conn, $insert);
+         $this->successMessage = "Registration successful! Redirecting to login...";
+         header('refresh:2;url = login_form.php');
       }
    }
 
    public function getErrors() {
       return $this->error ?: [];
    }
-
-   public function getSuccessMessage() {
-      return $this->successMessage;
-   }
-
 }
 
-if (!empty($errors)) {
-   foreach ($errors as $error) {
-      echo '<span class="error-msg">' . $error . '</span>';
-   }
+$userManager = new UserManager();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userManager->registerUser();
 }
+$errors = $userManager->getErrors();
 ?>
 
 <!DOCTYPE html>
@@ -67,29 +59,32 @@ if (!empty($errors)) {
 </head>
 <body>
 <?php include 'nav1.php';  ?>
-<div class="form-container" onsubmit="return Register()" >
+<div class="form-container" >
 
-   <form action="" method="post" >
+   <form action="" method="post" onsubmit="return validateRegistration()">
       <h3>register now</h3> 
       <?php
-      if(isset($error)){ 
-         foreach($error as $error){
-            echo '<span class="error-msg">'.$error.'</span>';
-         };
-      };
-      ?>
-      <input type="text" name="name" required placeholder="enter your name" id="name" required pattern =".{3,}$">
-      <input type="email" name="email" required placeholder="enter your email"id="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
-      <input type="password" name="password" required placeholder="enter your password"id="password" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|\W).{6,}$">
-      <input type="password" name="cpassword" required placeholder="confirm your password" id="cpassword" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d|\W).{6,}$">
+        if(isset($_SESSION['successMessage'])) {
+            echo '<span class="success-msg">' . $_SESSION['successMessage'] . '</span>';
+            unset($_SESSION['successMessage']);
+        }
+        if(!empty($errors)){ 
+            foreach($errors as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            }
+        }
+        ?>
+      <input type="text" name="name" required placeholder="enter your name" id="name">
+      <input type="email" name="email" required placeholder="enter your email"id="email">
+      <input type="password" name="password" required placeholder="enter your password"id="password">
+      <input type="password" name="cpassword" required placeholder="confirm your password" id="cpassword">
       <select name="user_type">
          <option value="user">user</option>
          <option value="admin">admin</option>
       </select>
-      <input type="submit" name="submit" value="register now" class="form-btn" onclick="validateRegistration()">
+      <input type="submit" name="submit" value="register now" class="form-btn">
       <p>already have an account? <a href="login_form.php">login now</a></p>
    </form>
-
 </div> 
 <script src="js/main.js"></script>
 </body>

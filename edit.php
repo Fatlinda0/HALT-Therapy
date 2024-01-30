@@ -91,8 +91,9 @@ if(isset($_POST['submit'])){
 
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="text" name="password" value="<?php echo $currenMenu['password']; ?>">
+        <input type="password" name="password" placeholder="Enter new password" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
     </div>
+
     
     <div class="form-group">
     <label for="user_type">Usertype:</label>
