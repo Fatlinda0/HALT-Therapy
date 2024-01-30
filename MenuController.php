@@ -21,16 +21,24 @@ class MenuController{
 
         return $query->fetch();
     }
-    public function update($request, $id){
-        $query = $this->db->pdo->prepare('UPDATE user_form SET  name=:name,
-         email=:email, user_type=:user_type, password=:password where id = :id');
-        $query-> bindParam(':name', $request['name']);
-        $query-> bindParam(':email', $request['email']);
-        $query-> bindParam(':password', $request['password']);
-        $query-> bindParam(':user_type', $request['user_type']);
-        $query->bindParam(':id',$id);
+    public function update($requestData, $id) {
+        if (isset($_POST['submit'])) {
+            $query = $this->db->pdo->prepare('UPDATE user_form SET name=:name, email=:email, password=:password, user_type=:user_type WHERE id = :id');
+            $query->bindParam(':name', $requestData['name']);
+            $query->bindParam(':email', $requestData['email']);
+            $query->bindParam(':password', md5($requestData['password']));
+            $query->bindParam(':user_type', $requestData['user_type']);
+            $query->bindParam(':id', $id);
+            $query->execute();
+            header('location:manageUsers.php');
+        }
+    }
+    
+    public function getUserData($id) {
+        $query = $this->db->pdo->prepare('SELECT * FROM user_form WHERE id = :id');
+        $query->bindParam(':id', $id);
         $query->execute();
-        return header('Location: manageUsers.php');
+        return $query->fetch();
     }
 
     public function delete($id){

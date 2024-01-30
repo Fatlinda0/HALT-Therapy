@@ -4,7 +4,7 @@ session_start();
 class UserManager {
    private $conn;
    private $error = [];
-   private $successMessage = '';
+   public $successMessage = '';
 
    public function __construct() {
       @include 'config.php';
@@ -29,7 +29,8 @@ class UserManager {
          $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name', '$email', '$pass', '$user_type')";
          mysqli_query($this->conn, $insert);
          $this->successMessage = "Registration successful! Redirecting to login...";
-         header('refresh:2;url = login_form.php');
+         $_SESSION['successMessage'] = $this->successMessage;
+         header('refresh:0.5;url = login_form.php');
       }
    }
 
@@ -64,15 +65,14 @@ $errors = $userManager->getErrors();
    <form action="" method="post" onsubmit="return validateRegistration()">
       <h3>register now</h3> 
       <?php
-        if(isset($_SESSION['successMessage'])) {
-            echo '<span class="success-msg">' . $_SESSION['successMessage'] . '</span>';
-            unset($_SESSION['successMessage']);
-        }
+        if ($userManager->successMessage != '') {
+         echo '<span class="success-msg">' . $userManager->successMessage . '</span>';
+         }
         if(!empty($errors)){ 
             foreach($errors as $error){
-                echo '<span class="error-msg">'.$error.'</span>';
+               echo '<span class="error-msg">'.$error.'</span>';
             }
-        }
+         }
         ?>
       <input type="text" name="name" required placeholder="enter your name" id="name">
       <input type="email" name="email" required placeholder="enter your email"id="email">
