@@ -19,18 +19,23 @@ class UserManager {
          $cpass = md5($_POST['cpassword']);
          $user_type = $_POST['user_type'];
 
+         if($pass != $cpass){
+            return;
+         }
+
          $select = "SELECT * FROM user_form WHERE email = '$email'";
          $result = mysqli_query($this->conn, $select);
 
          if (mysqli_num_rows($result) > 0) {
             $this->error[] = 'User already exists!';
-         }
+         } else{ 
              
          $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name', '$email', '$pass', '$user_type')";
          mysqli_query($this->conn, $insert);
          $this->successMessage = "Registration successful! Redirecting to login...";
          $_SESSION['successMessage'] = $this->successMessage;
          header('refresh:0.5;url = login_form.php');
+         }
       }
    }
 
